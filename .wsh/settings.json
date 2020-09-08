@@ -1,0 +1,52 @@
+{
+  "appLauncherSchema": {
+    "description": "Example Schema WshAppLauncher",
+    "components": {
+      "binDir": "D:\\MyApps",
+      "etcDir": "D:\\MyConfs",
+      "wmLeftPath": null,
+      "wmRightPath": null
+    },
+    "tasks": {
+      "main:Claunch": {
+        "app": "${binDir}\\CLaunch\\ClAdmin.exe"
+      },
+      "main:Firefox": {
+        "app": "${binDir}\\Firefox\\FirefoxPortable.exe"
+      },
+      "main:AutoHotkey": {
+        "app": "${binDir}\\AutoHotkey\\AutoHotkeyU64.exe",
+        "args": ["${etcDir}\\MyHotKey.ahk"],
+        "runsAdmin": true
+      },
+      "main:FreeCommander": {
+        "app": "${binDir}\\FreeCommander\\FreeCommander.exe",
+        "args": ["/N", "/ini=${etcDir}\\FreeCommander.ini"],
+        "winStyle": "nonActiveMin"
+      },
+      "main:mkTmpDir": {
+        "app": "mkdir",
+        "args": ["R:\\tmp_#{yyyyMMdd}"],
+        "shell": true
+      },
+      "main:Everything": {
+        "app": "${binDir}\\Everything\\Everything.exe",
+        "runsAdmin": true
+      },
+      "dev:cmdAdmin": {
+        "available": false,
+        "app": "C:\\Windows\\System32\\cmd.exe",
+        "runsAdmin": true
+      },
+      "dev:Vim": {
+        "app": "${binDir}\\Vim\\gvim.exe",
+        "args": ["-N", "-u", "${etcDir}\\_vimrc", "-U", "${etcDir}\\_gvimrc"]
+      },
+      "app:WinMerge": {
+        "app": "${binDir}\\WinMerge\\WinMergePortable.exe",
+        "args": ["${wmLeftPath}", "${wmRightPath}"],
+        "winStyle": "activeMax"
+      }
+    }
+  }
+}

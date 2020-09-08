@@ -1,0 +1,103 @@
+{
+  "name": "@tuckn/WshAppLauncher",
+  "description": "The WSH (Windows Script Host) CLI that launches apps according to the schema defined in a JSON file.",
+  "version": "1.0.0",
+  "author": "Tuckn <tuckn333+github@gmail.com>",
+  "private": false,
+  "license": "MIT",
+  "homepage": "https://docs.tuckn.net/WshAppLauncher",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuckn/WshAppLauncher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tuckn/WshAppLauncher/issues"
+  },
+  "keywords": [
+    "Windows",
+    "CLI",
+    "WSH",
+    "WSF",
+    "JScript",
+    "VBScript",
+    "launcher",
+    "command",
+    "json",
+    "schema",
+    "settings",
+    "preferences"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/bundle.js",
+  "bin": {},
+  "scripts": {
+    "install:WshJest": "git submodule add https://github.com/tuckn/WshJest.git ./WshModules/WshJest",
+    "install:WshBasicPackage": "git submodule add https://github.com/tuckn/WshBasicPackage.git ./WshModules/WshBasicPackage",
+    "installModules": "run-s install:*",
+    "updateModules": "git submodule update --remote",
+    "fix:eslint": "npm run lint:eslint -- --fix",
+    "fix:prettier": "npm run lint:prettier -- --write",
+    "fix": "run-p fix:*",
+    "lint:eslint": "eslint --ext js,ts .",
+    "lint:prettier": "prettier -l \"**/*.{json,md,yml,yaml}\"",
+    "lint:type": "tsc --noEmit",
+    "lint": "run-p lint:*",
+    "test:name:nonOp_dryRun": ".\\scripts\\Test AppLauncher -t nonOp_dryRun$",
+    "test:name:op_nonActiveMin": ".\\scripts\\Test AppLauncher -t nonActiveMin$",
+    "test:name:op_runsAdmin": ".\\scripts\\Test AppLauncher -t op_runsAdmin$",
+    "test:name:schema_all_dryRun": ".\\scripts\\Test AppLauncher -t schema_all_dryRun$",
+    "test:name:schema_overwrite_dryRun": ".\\scripts\\Test AppLauncher -t schema_overwrite_dryRun$",
+    "test:AppLauncher": ".\\scripts\\Test AppLauncher",
+    "test:name:launchApp_help": ".\\scripts\\Test Run -t launchApp_help$",
+    "test:name:launchApp_DefOp_dryRun": ".\\scripts\\Test Run -t launchApp_DefOp_dryRun$",
+    "test:name:launchApp_Op1_dryRun": ".\\scripts\\Test Run -t launchApp_Op1_dryRun$",
+    "test:name:schemaLaunch_help_noArg": ".\\scripts\\Test Run -t schemaLaunch_help_noArg$",
+    "test:name:schemaLaunch_help": ".\\scripts\\Test Run -t schemaLaunch_help$",
+    "test:name:schemaLaunch_dryRun": ".\\scripts\\Test Run -t schemaLaunch_dryRun$",
+    "test:name:schemaLaunch_dryRun_task": ".\\scripts\\Test Run -t schemaLaunch_dryRun_task$",
+    "test:name:schemaLaunch_dryRun_defJson": ".\\scripts\\Test Run -t schemaLaunch_dryRun_defJson$",
+    "test:Run": ".\\scripts\\Test Run",
+    "test:src:Run": ".\\scripts\\Test src:Run",
+    "build": "wsh-packager bundle ./Package.wsf",
+    "test:dist:module": ".\\scripts\\Test dist:module",
+    "test:dist:bundle": ".\\scripts\\Test dist:bundle",
+    "test:dist:Run": ".\\scripts\\Test dist:Run",
+    "test": "run-s test:dist:*",
+    "predocs": "rimraf ./docs",
+    "docs:common": "jsdoc --configure ./jsdoc.json",
+    "cp-docs-css": "cpy ./assets/styles/jsdoc.css ./docs/styles/",
+    "cp-docs-img": "cpy ./assets/img/**/* ./docs/img/",
+    "postdocs": "run-p cp-docs-*",
+    "docs": "run-s docs:*",
+    "up-build-doc": "run-s updateModules build docs"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo @FIXME \"npx lint-staged\" fixes all .js!"
+    }
+  },
+  "lint-staged": {
+    "*.{js}": "eslint --fix",
+    "*.{json,css,md,yml,yaml}": "prettier --write"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@tuckn/insert-gtag": "^1.1.0",
+    "@tuckn/wsh-packager": "^1.0.0",
+    "@types/activex-scripting": "^1.0.7",
+    "@types/windows-script-host": "^5.8.3",
+    "cpy-cli": "^3.1.1",
+    "docdash": "^1.2.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-jsdoc": "^29.1.3",
+    "eslint-plugin-prettier": "3.1.4",
+    "husky": "4.2.5",
+    "jsdoc": "^3.6.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "2.0.5",
+    "rimraf": "^3.0.2"
+  }
+}
