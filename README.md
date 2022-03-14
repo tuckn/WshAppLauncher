@@ -148,6 +148,14 @@ Options:
 See [Wsh.ConfigStore](https://docs.tuckn.net/WshConfigStore/) for the options `--dir-path` and `--file-name`.
 and see [Wsh.Logger](https://docs.tuckn.net/WshLogger/) for the options `--logger`.
 
+### Command examples
+
+Use to specify a task name and a schema JSON path.
+
+```console
+cscript //nologo .\dist\Run.wsf schemaLaunch main:AutoHotkey --dir-path "C:\My Settings\"
+```
+
 ## Installation as Module
 
 (1) Create a directory of your WSH project.

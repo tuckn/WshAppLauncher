@@ -8,7 +8,7 @@
    *
    * @namespace AppLauncher
    * @memberof Wsh
-   * @requires {@link https://github.com/tuckn/WshAppLauncher|tuckn/WshAppLauncher}
+   * @requires {@link https://github.com/tuckn/WshAppLauncher|tuckn/WshBasicPackage}
    */
   Wsh.AppLauncher = {};
 
