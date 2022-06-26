@@ -8,7 +8,7 @@ Works on JScript in Windows.
 
 ## Installation
 
-Download this ZIP and unzipping or Use following `git` command.
+Download this ZIP and unzip or Use the following `git` command.
 
 ```console
 D:\> git clone https://github.com/tuckn/WshAppLauncher.git
@@ -165,7 +165,7 @@ D:\> mkdir MyWshProject
 D:\> cd MyWshProject
 ```
 
-(2) Download this ZIP and unzipping or Use following `git` command.
+(2) Download this ZIP and unzip or Use the following `git` command.
 
 ```console
 > git clone https://github.com/tuckn/WshAppLauncher.git ./WshModules/WshAppLauncher
@@ -186,7 +186,7 @@ D:\MyWshProject\
           └─ bundle.js
 ```
 
-The content of above _Run.wsf_ is
+The content of the above _Run.wsf_ is
 
 ```xml
 <package>
@@ -197,7 +197,7 @@ The content of above _Run.wsf_ is
 </package>
 ```
 
-I recommend this .wsf file encoding to be UTF-8 [BOM, CRLF].
+I recommend this WSH file (.wsf) encoding to be UTF-8 [BOM, CRLF].
 
 ### Together with another Apps
 
