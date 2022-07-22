@@ -14,6 +14,7 @@
 
   // Shorthands
   var util = Wsh.Util;
+  var os = Wsh.OS;
   var child_process = Wsh.ChildProcess;
   var logger = Wsh.Logger;
 
@@ -27,6 +28,7 @@
   var isArray = util.isArray;
   var isSolidString = util.isSolidString;
   var isPlainObject = util.isPlainObject;
+  var srrd = os.surroundCmdArg;
 
   var apL = Wsh.AppLauncher; // Shorthand
 
@@ -79,21 +81,36 @@
 
     if (!isSolidString(app)) throwErrNonStr(FN, app);
 
-    // parameters
+    // Arguments
+    var argsStr = os.joinCmdArgs(args);
+    // Command
+    var command = srrd(app) + ' ' + argsStr;
+    // Options
     var shell = obtain(options, 'shell', false);
     var winStyle = obtain(options, 'winStyle', 'activeDef');
     var runsAdmin = obtain(options, 'runsAdmin');
     var isDryRun = obtain(options, 'isDryRun', false);
 
-    lggr.info('app: "' + app + '"');
-    lggr.info('args: [' + (args ? args : '') + ']');
+    var op = objAdd(
+      // Default option values
+      {
+        shell: shell,
+        winStyle: winStyle,
+        runsAdmin: runsAdmin,
+        isDryRun: isDryRun
+      },
+      // Specified option values
+      options
+    );
+
+    lggr.info('command: ' + command);
     lggr.info('shell: ' + shell);
     lggr.info('winStyle: ' + winStyle);
     lggr.info('runsAdmin: ' + runsAdmin);
-    if (isDryRun) lggr.info('isDryRun: ' + isDryRun);
+    lggr.info('isDryRun: ' + isDryRun);
 
-    var dryLog = child_process.execFile(app, args, options);
-    if (isDryRun) lggr.info(dryLog);
+    var rtn = child_process.exec(command, op);
+    if (isDryRun) lggr.info(rtn);
 
     lggr.info('Finished the function ' + FN);
     var transportsLog = obtain(options, 'transportsLog', true);
@@ -251,17 +268,23 @@
         apL.launchAppUsingLog(
           app,
           args,
-          objAdd({}, options, {
-            shell: shell,
-            winStyle: winStyle,
-            runsAdmin: runsAdmin,
-            logger: lggr,
-            transportsLog: false,
-            throws: false
-          })
+          objAdd(
+            {
+              transportsLog: false,
+              throws: false
+            },
+            options,
+            // Option values on the Schema JSON
+            {
+              shell: shell,
+              winStyle: winStyle,
+              runsAdmin: runsAdmin,
+              logger: lggr
+            }
+          )
         );
-      } catch (e) { // It does not stop with an error.
-        lggr.error(insp(e));
+      } catch (e) {
+        lggr.error(insp(e)); // It does not stop with an error.
       }
     });
 

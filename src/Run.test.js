@@ -21,7 +21,7 @@ var parseTmp = util.parseTemplateLiteral;
 var parseDate = util.parseDateLiteral;
 var obtain = util.obtainPropVal;
 var isArray = util.isArray;
-var srr = os.surroundPath;
+var srrd = os.surroundCmdArg;
 var CMD = os.exefiles.cmd;
 var CSCRIPT = os.exefiles.cscript;
 var NOTEPAD = os.exefiles.notepad;
@@ -29,9 +29,9 @@ var execSync = child_process.execSync;
 
 var testRun;
 if (includes(process.execArgv, '//job:test:dist:Run')) {
-  testRun = srr(CSCRIPT) + ' ' + srr(path.join(__dirname, 'dist', 'Run.wsf')) + ' //nologo';
+  testRun = srrd(CSCRIPT) + ' ' + srrd(path.join(__dirname, 'dist', 'Run.wsf')) + ' //nologo';
 } else {
-  testRun = srr(CSCRIPT) + ' ' + srr(__filename) + ' //nologo //job:test:src:Run';
+  testRun = srrd(CSCRIPT) + ' ' + srrd(__filename) + ' //nologo //job:test:src:Run';
 }
 
 describe('Run', function () {
@@ -61,7 +61,7 @@ describe('Run', function () {
     var args = ['arg1', 'arg2', 'arg3'];
     var cliArgs = [
       'launchApp',
-      srr(app),
+      srrd(app),
       args.join(' '),
       '--dry-run'
     ];
@@ -72,8 +72,7 @@ describe('Run', function () {
 
     var expC = expect(retObj.stdout).toContain; // Shorthand
     expC('Start the function apL.launchAppUsingLog');
-    expC('app: "' + app + '"');
-    expC('args: [' + args + ']');
+    expC('command: ' + srrd(app) + ' ' + os.joinCmdArgs(args));
     expC('shell: false');
     expC('winStyle: activeDef');
     expC('runsAdmin: undefined');
@@ -87,7 +86,7 @@ describe('Run', function () {
     var app = NOTEPAD;
     var cliArgs = [
       'launchApp',
-      srr(app),
+      srrd(app),
       '--shell',
       '--winStyle nonActiveMin',
       '--dry-run'
@@ -99,8 +98,7 @@ describe('Run', function () {
 
     var expC = expect(retObj.stdout).toContain; // Shorthand
     expC('Start the function apL.launchAppUsingLog');
-    expC('app: "' + app + '"');
-    expC('args: []');
+    expC('command: ' + srrd(app));
     expC('shell: true');
     expC('winStyle: nonActiveMin');
     expC('runsAdmin: undefined');
@@ -225,8 +223,7 @@ describe('Run', function () {
       }
 
       expC('Start the task: main:Claunch');
-      expC('app: "' + app + '"');
-      expC('args: [' + args + ']');
+      expC('command: ' + srrd(app) + ' ' + os.joinCmdArgs(args));
       expC('shell: ' + obtain(task, 'shell', false));
       expC('winStyle: ' + parseTmp(task.winStyle || '', scm.components));
       expC('runsAdmin: ' + obtain(task, 'runsAdmin'));
@@ -247,8 +244,7 @@ describe('Run', function () {
       }
 
       expC('Start the task: app:WinMerge');
-      expC('app: "' + app + '"');
-      expC('args: [' + args + ']');
+      expC('command: ' + srrd(app) + ' ' + os.joinCmdArgs(args));
       expC('shell: ' + obtain(task, 'shell', false));
       expC('winStyle: ' + parseTmp(task.winStyle || '', scm.components));
       expC('runsAdmin: ' + obtain(task, 'runsAdmin'));
@@ -310,8 +306,7 @@ describe('Run', function () {
       }
 
       expNC('Start the task: main:Claunch');
-      expNC('app: "' + app + '"');
-      expNC('args: [' + args + ']');
+      expNC('command: ' + srrd(app) + ' ' + os.joinCmdArgs(args));
     })();
 
     // @TODO more test
@@ -333,8 +328,7 @@ describe('Run', function () {
       }
 
       expC('Start the task: app:WinMerge');
-      expC('app: "' + app + '"');
-      expC('args: [' + args + ']');
+      expC('command: ' + srrd(app) + ' ' + os.joinCmdArgs(args));
       expC('shell: ' + obtain(task, 'shell', false));
       expC('winStyle: ' + parseTmp(task.winStyle || '', scm.components));
       expC('runsAdmin: ' + obtain(task, 'runsAdmin'));
@@ -378,8 +372,7 @@ describe('Run', function () {
       }
 
       expC('Start the task: main:Claunch');
-      expC('app: "' + app + '"');
-      expC('args: [' + args + ']');
+      expC('command: ' + srrd(app) + ' ' + os.joinCmdArgs(args));
       expC('shell: ' + obtain(task, 'shell', false));
       expC('winStyle: ' + parseTmp(task.winStyle || '', scm.components));
       expC('runsAdmin: ' + obtain(task, 'runsAdmin'));
@@ -400,8 +393,7 @@ describe('Run', function () {
       }
 
       expC('Start the task: app:WinMerge');
-      expC('app: "' + app + '"');
-      expC('args: [' + args + ']');
+      expC('command: ' + srrd(app) + ' ' + os.joinCmdArgs(args));
       expC('shell: ' + obtain(task, 'shell', false));
       expC('winStyle: ' + parseTmp(task.winStyle || '', scm.components));
       expC('runsAdmin: ' + obtain(task, 'runsAdmin'));

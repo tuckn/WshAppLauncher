@@ -18,6 +18,7 @@ var parseTmp = util.parseTemplateLiteral;
 var parseDate = util.parseDateLiteral;
 var obtain = util.obtainPropVal;
 var isArray = util.isArray;
+var srrd = os.surroundCmdArg;
 var NET = os.exefiles.net;
 // var PING = os.exefiles.ping;
 var NOTEPAD = os.exefiles.notepad;
@@ -41,24 +42,23 @@ describe('AppLauncher', function () {
     (function () {
       var logFile = path.join(dirTest, 'test1.log');
       var lggr = logger.create('info/' + logFile);
-      var retVal = apL.launchAppUsingLog(NOTEPAD, [__filename], {
+      var rtn = apL.launchAppUsingLog(NOTEPAD, [__filename], {
         logger: lggr,
         isDryRun: true
       });
-      expect(retVal).toBeUndefined();
+      expect(rtn).toBeUndefined();
       // console.dir(retVal); // debug
 
       var logStr = fs.readFileSync(logFile, { encoding: 'utf8' });
       // console.log(logStr); // debug
       var expC = expect(logStr).toContain; // Shorthand
       expC('Start the function apL.launchAppUsingLog');
-      expC('app: "' + NOTEPAD + '"');
-      expC('args: [' + __filename + ']');
+      expC('command: ' + srrd(NOTEPAD) + ' ' + srrd(__filename));
       expC('shell: false');
       expC('winStyle: activeDef');
       expC('runsAdmin: undefined');
       expC('isDryRun: true');
-      expC('dry-run [_shRun]: ' + NOTEPAD + ' ' + __filename);
+      expC('dry-run [_shRun]: ' + srrd(NOTEPAD) + ' ' + srrd(__filename));
       expC('Finished the function apL.launchAppUsingLog');
     })();
 
@@ -86,12 +86,11 @@ describe('AppLauncher', function () {
       // console.log(logStr); // debug
       var expC = expect(logStr).toContain; // Shorthand
       expC('Start the function apL.launchAppUsingLog');
-      expC('app: "' + NOTEPAD + '"');
-      expC('args: [' + __filename + ']');
+      expC('command: ' + srrd(NOTEPAD) + ' ' + srrd(__filename));
       expC('shell: false');
       expC('winStyle: nonActiveMin');
       expC('runsAdmin: undefined');
-      expect(logStr).not.toContain('isDryRun: ');
+      expC('isDryRun: false');
       expC('Finished the function apL.launchAppUsingLog');
     })();
 
@@ -121,12 +120,11 @@ describe('AppLauncher', function () {
       // console.log(logStr); // debug
       var expC = expect(logStr).toContain; // Shorthand
       expC('Start the function apL.launchAppUsingLog');
-      expC('app: "' + NET + '"');
-      expC('args: [session]');
+      expC('command: ' + srrd(NET) + ' session');
       expC('shell: false');
       expC('winStyle: activeDef');
       expC('runsAdmin: true');
-      expect(logStr).not.toContain('isDryRun: ');
+      expC('isDryRun: false');
       expC('Finished the function apL.launchAppUsingLog');
     })();
 
@@ -218,13 +216,12 @@ describe('AppLauncher', function () {
       }
 
       expC('Start the task: main:Claunch');
-      expC('app: "' + app + '"');
-      expC('args: [' + args + ']');
+      expC('command: ' + srrd(app) + ' ' + os.joinCmdArgs(args));
       expC('shell: ' + obtain(task, 'shell', false));
       expC('winStyle: ' + parseTmp(task.winStyle || '', schema.components));
       expC('runsAdmin: ' + obtain(task, 'runsAdmin'));
       expC('isDryRun: true');
-      expC('dry-run [_shRun]: ' + app);
+      expC('dry-run [_shRun]: ' + srrd(app));
     })();
 
     // @TODO more test
@@ -241,13 +238,12 @@ describe('AppLauncher', function () {
       }
 
       expC('Start the task: app:WinMerge');
-      expC('app: "' + app + '"');
-      expC('args: [' + args + ']');
+      expC('command: ' + srrd(app) + ' ' + os.joinCmdArgs(args));
       expC('shell: ' + obtain(task, 'shell', false));
       expC('winStyle: ' + parseTmp(task.winStyle || '', schema.components));
       expC('runsAdmin: ' + obtain(task, 'runsAdmin'));
       expC('isDryRun: true');
-      expC('dry-run [_shRun]: ' + app + ' ' + args.join(' '));
+      expC('dry-run [_shRun]: ' + srrd(app) + ' ' + os.joinCmdArgs(args));
     })();
 
     expC('Finished function apL.launchAppsUsingSchema');
@@ -297,8 +293,7 @@ describe('AppLauncher', function () {
       }
 
       expNC('Start the task: main:Claunch');
-      expNC('app: "' + app + '"');
-      expNC('args: [' + args + ']');
+      expNC('command: ' + srrd(app) + ' ' + os.joinCmdArgs(args));
     })();
 
     (function () {
@@ -312,8 +307,7 @@ describe('AppLauncher', function () {
       }
 
       expC('Start the task: app:WinMerge');
-      expC('app: "' + app + '"');
-      expC('args: [' + args + ']');
+      expC('command: ' + srrd(app) + ' ' + os.joinCmdArgs(args));
       expC('shell: ' + obtain(task, 'shell', false));
       expC('winStyle: ' + parseTmp(task.winStyle || '', schema.components));
       expC('runsAdmin: ' + obtain(task, 'runsAdmin'));
