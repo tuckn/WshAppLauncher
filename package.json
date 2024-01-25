@@ -9,7 +9,7 @@
   },
   "private": false,
   "license": "MIT",
-  "homepage": "https://docs.tuckn.net/WshAppLauncher",
+  "homepage": "https://tuckn.net/docs/WshAppLauncher/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tuckn/WshAppLauncher.git"

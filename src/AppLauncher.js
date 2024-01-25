@@ -65,11 +65,11 @@
    * @param {string[]} [args] - The Array of arguments.
    * @param {object} [options] - Optional parameters.
    * @param {boolean} [options.shell=false] - Wrap with CMD.EXE
-   * @param {(number|string)} [options.winStyle='activeDef'] - See {@link https://docs.tuckn.net/WshUtil/Wsh.Constants.windowStyles.html|Wsh.Constants.windowStyles}.
+   * @param {(number|string)} [options.winStyle='activeDef'] - See {@link https://tuckn.net/docs/WshUtil/Wsh.Constants.windowStyles.html|Wsh.Constants.windowStyles}.
    * @param {(boolean|undefined)} [options.runsAdmin] - true: as Admin, false: as User
    * @param {boolean} [options.isDryRun=false] - No execute, returns the string of command.
-   * @param {(Logger|string|object)} [options.logger] - The Logger instance or create options. See {@link https://docs.tuckn.net/WshLogger/Wsh.Logger.html#.create|Wsh.Logger.create}.
-   * @param {boolean} [options.transportsLog=true] - Outputs Wsh.Logger logs after connecting. See {@link https://docs.tuckn.net/WshLogger/Wsh.Logger.html#.this.transport|Wsh.Logger.transport}.
+   * @param {(Logger|string|object)} [options.logger] - The Logger instance or create options. See {@link https://tuckn.net/docs/WshLogger/Wsh.Logger.html#.create|Wsh.Logger.create}.
+   * @param {boolean} [options.transportsLog=true] - Outputs Wsh.Logger logs after connecting. See {@link https://tuckn.net/docs/WshLogger/Wsh.Logger.html#.this.transport|Wsh.Logger.transport}.
    * @returns {void}
    */
   apL.launchAppUsingLog = function (app, args, options) {
@@ -134,7 +134,7 @@
    * @property {string} app - The executable file path or the command of CMD.
    * @property {string[]} [args] - The Array of arguments.
    * @property {boolean} [shell=false] - Wrap with CMD.EXE
-   * @property {(number|string)} [winStyle='activeDef'] - See {@link https://docs.tuckn.net/WshUtil/Wsh.Constants.windowStyles.html|Wsh.Constants.windowStyles}.
+   * @property {(number|string)} [winStyle='activeDef'] - See {@link https://tuckn.net/docs/WshUtil/Wsh.Constants.windowStyles.html|Wsh.Constants.windowStyles}.
    * @property {(boolean|undefined)} [runsAdmin] - true: as Admin, false: as User
    */
 

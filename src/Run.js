@@ -28,7 +28,7 @@ var isSolidArray = util.isSolidArray;
  * Options:
  *   -V, --version          Output the version number
  *   -S, --shell            Wrap with CMD.EXE. (default: false)
- *   -W, --winStyle <style> See https://docs.tuckn.net/WshUtil/Wsh.Constants.windowStyles.html. (default: "activeDef")
+ *   -W, --winStyle <style> See https://tuckn.net/docs/WshUtil/Wsh.Constants.windowStyles.html. (default: "activeDef")
  *   -A, --runsAsAdmin      Run as administrator (High WIL)
  *   -U, --runsAsUser       Run as user (Medium WIL)
  *   -L, --logger <val>     <level>/<transportation> (e.g. "warn/popup").  (default: "info/console")
@@ -43,7 +43,7 @@ cli.addProgram({
   version: '1.0.0',
   options: [
     ['-S, --shell', 'Wrap with CMD.EXE.', false],
-    ['-W, --winStyle <style>', 'See https://docs.tuckn.net/WshUtil/Wsh.Constants.windowStyles.html.', 'activeDef'],
+    ['-W, --winStyle <style>', 'See https://tuckn.net/docs/WshUtil/Wsh.Constants.windowStyles.html.', 'activeDef'],
     ['-A, --runsAsAdmin', 'Run as administrator (High WIL)', undefined],
     ['-U, --runsAsUser', 'Run as user (Medium WIL)', undefined],
     ['-L, --logger <val>', '<level>/<transportation> (e.g. "warn/popup"). ', 'info/console'],

@@ -37,9 +37,9 @@
     "openGraph": {
       "title": "WshAppLauncher",
       "type": "website",
-      "image": "https://docs.tuckn.net/WshAppLauncher/img/openGraph-image.png",
+      "image": "https://tuckn.net/docs/WshAppLauncher/img/openGraph-image.png",
       "site_name": "@tuckn/WshAppLauncher",
-      "url": "https://docs.tuckn.net/WshAppLauncher"
+      "url": "https://tuckn.net/docs/WshAppLauncher/"
     },
     "meta": {
       "title": "WshAppLauncher",

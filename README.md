@@ -92,7 +92,7 @@ You can also use a date code literal to define `app` and `args`.
 }
 ```
 
-See [WshUtil: parseDateLiteral](https://docs.tuckn.net/WshUtil/Wsh.Util.html#.parseDateLiteral) for the literal.
+See [WshUtil: parseDateLiteral](https://tuckn.net/docs/WshUtil/Wsh.Util.html#.parseDateLiteral) for the literal.
 
 And can also use launching options.
 
@@ -109,7 +109,7 @@ And can also use launching options.
   }
 ```
 
-See [WshAppLauncher: typeSchemaAppLauncherTask](https://docs.tuckn.net/WshAppLauncher/docs/global.html#typeSchemaAppLauncherTask) for the options.
+See [WshAppLauncher: typeSchemaAppLauncherTask](https://tuckn.net/docs/WshAppLauncher/docs/global.html#typeSchemaAppLauncherTask) for the options.
 
 ### Run with WSH
 
@@ -145,8 +145,8 @@ Options:
   -h, --help             Output usage information
 ```
 
-See [Wsh.ConfigStore](https://docs.tuckn.net/WshConfigStore/) for the options `--dir-path` and `--file-name`.
-and see [Wsh.Logger](https://docs.tuckn.net/WshLogger/) for the options `--logger`.
+See [Wsh.ConfigStore](https://tuckn.net/docs/WshConfigStore/) for the options `--dir-path` and `--file-name`.
+and see [Wsh.Logger](https://tuckn.net/docs/WshLogger/) for the options `--logger`.
 
 ### Command examples
 
@@ -301,7 +301,7 @@ You can also use [tuckn/WshBasicPackage](https://github.com/tuckn/WshBasicPackag
 
 ## Documentation
 
-See all specifications [here](https://docs.tuckn.net/WshAppLauncher) and also [WshBasicPackage](https://docs.tuckn.net/WshBasicPackage).
+See all specifications [here](https://tuckn.net/docs/WshAppLauncher/) and also [WshBasicPackage](https://tuckn.net/docs/WshBasicPackage/).
 
 ## License
 
